@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FIFA 23 Analytics Dashboard</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>FIFA 23 Analytics Dashboard</h1>
+
+        <p>
+            Interactive Data Visualization Using D3.js
+        </p>
+
+    </header>
+
+    <!-- FILTER -->
+
+    <div class="filter-container">
+
+        <label for="ageFilter">
+
+            Filter Age Category:
+
+        </label>
+
+        <select id="ageFilter">
+
+            <option value="All">
+                All
+            </option>
+
+            <option value="Young">
+                Young
+            </option>
+
+            <option value="Adult">
+                Adult
+            </option>
+
+            <option value="Senior">
+                Senior
+            </option>
+
+        </select>
+
+    </div>
+
+    <!-- DASHBOARD -->
+
+    <section class="dashboard">
+
+        <!-- VISUALISASI 1 -->
+
+        <div class="chart-box">
+
+            <h2>Top 10 Player Overall Rating</h2>
+
+            <svg id="barChart"></svg>
+
+        </div>
+
+        <!-- VISUALISASI 2 -->
+
+        <div class="chart-box">
+
+            <h2>Player Age Distribution</h2>
+
+            <svg id="lineChart"></svg>
+
+        </div>
+
+        <!-- VISUALISASI 3 -->
+
+        <div class="chart-box">
+
+            <h2>Overall vs Player Value</h2>
+
+            <svg id="scatterPlot"></svg>
+
+        </div>
+
+        <!-- VISUALISASI 4 -->
+
+        <div class="chart-box">
+
+            <h2>Player Position Distribution</h2>
+
+            <svg id="pieChart"></svg>
+
+        </div>
+
+        <!-- VISUALISASI 5 -->
+
+        <div class="chart-box">
+
+            <h2>Top 10 Club Average Overall</h2>
+
+            <svg id="horizontalBarChart"></svg>
+
+        </div>
+
+    </section>
+
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
