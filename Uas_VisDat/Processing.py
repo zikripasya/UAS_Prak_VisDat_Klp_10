@@ -1,24 +1,16 @@
-# ============================================
 # FIFA 23 DATA PREPROCESSING
-# ============================================
 
-# ============================================
-# IMPORT LIBRARY
-# ============================================
+# Import Library
 
 import pandas as pd
 import numpy as np
 
-# ============================================
-# MEMBACA DATASET
-# ============================================
+# Membaca Dataset
 
 players = pd.read_csv('data/players_fifa23.csv')
 teams = pd.read_csv('data/teams_fifa23.csv')
 
-# ============================================
-# MENAMPILKAN DATA AWAL
-# ============================================
+# Menampilkan Data Awal
 
 print("===== DATA PLAYERS =====")
 print(players.head())
@@ -29,16 +21,12 @@ print(players.info())
 print("\n===== UKURAN DATASET =====")
 print(players.shape)
 
-# ============================================
-# CEK MISSING VALUE
-# ============================================
+# Mengecek Missing Value
 
 print("\n===== MISSING VALUE =====")
 print(players.isnull().sum())
 
-# ============================================
-# HAPUS KOLOM TIDAK DIGUNAKAN
-# ============================================
+# Menghapus Kolom Tidak Digunakan
 
 drop_columns = [
     'PhotoUrl'
@@ -50,9 +38,7 @@ players.drop(
     errors='ignore'
 )
 
-# ============================================
-# PILIH KOLOM PENTING
-# ============================================
+# Memilih Kolom Penting
 
 players = players[[
     'Name',
@@ -72,35 +58,25 @@ players = players[[
     'PhysicalityTotal'
 ]]
 
-# ============================================
-# HAPUS MISSING VALUE
-# ============================================
+# Menghapus Missing Value
 
 players = players.dropna()
 
-# ============================================
-# CEK DATA DUPLIKAT
-# ============================================
+# Mengecek Data Duplikat
 
 print("\n===== DATA DUPLIKAT =====")
 print(players.duplicated().sum())
 
-# ============================================
-# HAPUS DATA DUPLIKAT
-# ============================================
+# Menghapus Data Duplikat
 
 players = players.drop_duplicates()
 
-# ============================================
-# CEK TIPE DATA
-# ============================================
+# Mengecek Tipe Data
 
 print("\n===== TIPE DATA =====")
 print(players.dtypes)
 
-# ============================================
-# UBAH FORMAT DATA NUMERIK
-# ============================================
+# Mengubah Format Data Numerik
 
 numeric_cols = [
     'Overall',
@@ -123,15 +99,11 @@ for col in numeric_cols:
         errors='coerce'
     )
 
-# ============================================
-# HAPUS NULL SETELAH KONVERSI
-# ============================================
+# Menghapus Null Setelah Konversi
 
 players = players.dropna()
 
-# ============================================
-# MEMBERSIHKAN STRING
-# ============================================
+# Membersihkan Data String
 
 players['Club'] = (
     players['Club']
@@ -151,13 +123,9 @@ players['Positions'] = (
     .str.strip()
 )
 
-# ============================================
-# FEATURE ENGINEERING
-# ============================================
+# Feature Engineering
 
-# --------------------------------------------
-# KATEGORI UMUR
-# --------------------------------------------
+# Membuat Kategori Umur
 
 def age_category(age):
 
@@ -176,9 +144,7 @@ players['AgeCategory'] = (
     .apply(age_category)
 )
 
-# --------------------------------------------
-# KATEGORI RATING
-# --------------------------------------------
+# Membuat Kategori Rating
 
 def rating_category(overall):
 
@@ -197,23 +163,17 @@ players['RatingCategory'] = (
     .apply(rating_category)
 )
 
-# ============================================
-# FILTERING DATA
-# ============================================
+# Filtering Data
 
 players = players[
-    players['Overall'] > 70
+    players['Overall'] > 65
 ]
 
-# ============================================
-# RESET INDEX
-# ============================================
+# Reset Index
 
 players = players.reset_index(drop=True)
 
-# ============================================
-# INFORMASI DATASET SETELAH CLEANING
-# ============================================
+# Informasi Dataset Setelah Preprocessing
 
 print("\n===== DATASET SETELAH PREPROCESSING =====")
 
@@ -225,18 +185,14 @@ print(players.shape)
 print("\n===== INFO DATASET BARU =====")
 print(players.info())
 
-# ============================================
-# SIMPAN DATASET BERSIH
-# ============================================
+# Menyimpan Dataset Bersih
 
 players.to_csv(
     'players_fifa23_clean.csv',
     index=False
 )
 
-# ============================================
-# SELESAI
-# ============================================
+# Preprocessing Selesai
 
 print("\n===================================")
 print("PREPROCESSING SELESAI")
