@@ -4,10 +4,7 @@
 
 d3.csv("data/players_fifa23_clean.csv").then(function(data){
 
-    // =================================================
     // KONVERSI DATA NUMERIK
-    // =================================================
-
     data.forEach(function(d){
 
         d.Overall = +d.Overall;
@@ -16,10 +13,7 @@ d3.csv("data/players_fifa23_clean.csv").then(function(data){
 
     });
 
-    // =================================================
     // TOOLTIP
-    // =================================================
-
     const tooltip = d3.select("body")
         .append("div")
         .style("position", "absolute")
@@ -34,11 +28,9 @@ d3.csv("data/players_fifa23_clean.csv").then(function(data){
     const height = 400;
     const margin = 50;
 
-    // =================================================
     // VISUALISASI 1
     // BAR CHART
     // TOP 10 PLAYER OVERALL
-    // =================================================
 
     const topPlayers = data
         .sort((a, b) => b.Overall - a.Overall)
@@ -120,11 +112,9 @@ d3.csv("data/players_fifa23_clean.csv").then(function(data){
         .attr("y", d => y(d.Overall))
         .attr("height", d => height - margin - y(d.Overall));
 
-    // =================================================
     // VISUALISASI 2
     // LINE CHART
     // AGE DISTRIBUTION
-    // =================================================
 
     const ageCount = d3.rollup(
         data,
@@ -182,11 +172,9 @@ d3.csv("data/players_fifa23_clean.csv").then(function(data){
         .attr("stroke-width", 3)
         .attr("d", line);
 
-    // =================================================
     // VISUALISASI 3
     // SCATTER PLOT
     // OVERALL VS VALUE
-    // =================================================
 
     const scatterSvg = d3.select("#scatterPlot");
 
@@ -256,11 +244,9 @@ d3.csv("data/players_fifa23_clean.csv").then(function(data){
 
         });
 
-    // =================================================
     // VISUALISASI 4
     // PIE CHART
     // PLAYER POSITION DISTRIBUTION
-    // =================================================
 
     const pieSvg = d3.select("#pieChart");
 
@@ -328,11 +314,9 @@ d3.csv("data/players_fifa23_clean.csv").then(function(data){
 
         });
 
-    // =================================================
     // VISUALISASI 5
     // HORIZONTAL BAR CHART
     // TOP CLUB AVERAGE OVERALL
-    // =================================================
 
     const clubSvg = d3.select("#horizontalBarChart");
 
